@@ -47,18 +47,19 @@ namespace OOP.FinalTerm.Exam
         {
             try
             {
-                //TODO: Students will implement this method to load directors into dgvDirectors using _directorRepository.GetAllDirectors()
-                //refer to LoadMoviesToGrid() method for guidance
-                //hide director id
-               //dgvDirectors.DataSource = 
-
+                var directors = _directorRepository.GetAllDirectors();
+                dgvDirectors.DataSource = directors;
+    
+                if (dgvDirectors.Columns.Contains("Id"))
+                {
+                    dgvDirectors.Columns["Id"].Visible = false;
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading directors: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         #region Event Handlers [DON'T TOUCH]
 
         private void BtnAdd_Click(object sender, EventArgs e)
